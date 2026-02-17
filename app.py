@@ -11,7 +11,11 @@ if hist_button:  # al hacer clic en el botón
         'Creación de un histograma para el conjunto de datos de anuncios de venta de coches')
 
     # crear un histograma
-    fig = px.histogram(car_data, x="odometer")
+    fig = px.histogram(car_data, x="odometer", range_x=[0, 400000], labels={
+                       "odometer": "Kilometraje del vehículo"}, title="Histograma del kilometraje de los coches en venta")
+
+    # actualizar el título del eje y
+    fig.update_layout(yaxis_title="Número de vehículos")
 
     # mostrar un gráfico Plotly interactivo
     st.plotly_chart(fig, use_container_width=True)
@@ -24,7 +28,8 @@ if hist_button:  # al hacer clic en el botón
         'Creación de un gráfico de dispersión para el conjunto de datos de anuncios de venta de coches')
 
     # crear un gráfico de dispersión
-    fig = px.scatter(car_data, x="odometer", y="price")
+    fig = px.scatter(car_data, x="odometer", y="price", labels={
+                     "odometer": "Kilometraje del vehículo", "price": "Precio del vehículo"}, title="Gráfico de dispersión del kilometraje y precio de los coches en venta")
 
     # mostrar un gráfico Plotly interactivo
     st.plotly_chart(fig, use_container_width=True)
